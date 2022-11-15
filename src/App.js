@@ -5,6 +5,7 @@ import React from 'react';
 
 class App extends Component{
   constructor(){
+    console.log('1 constructor');
     super();
     this.state = {
       monsters:[],
@@ -12,6 +13,7 @@ class App extends Component{
   }
 
   componentDidMount(){
+    console.log('3 compponenrtDidMount');
     fetch('https://jsonplaceholder.typicode.com/users')
     .then((Response)=>Response.json())
     .then((users)=>
@@ -28,6 +30,7 @@ class App extends Component{
   }
 
     render(){
+      console.log('2 render');
       return <div className='App'>
         {this.state.monsters.map((monster)=>{
           return (

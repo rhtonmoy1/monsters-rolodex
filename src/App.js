@@ -5,11 +5,12 @@ import React from 'react';
 
 class App extends Component{
   constructor(){
-    console.log('1 constructor');
+    
     super();
     this.state = {
       monsters:[],
     };
+    console.log('1 constructor');
   }
 
   componentDidMount(){
@@ -32,6 +33,21 @@ class App extends Component{
     render(){
       console.log('2 render');
       return <div className='App'>
+        <input 
+          className='search-box' 
+          type='search' 
+          placeholder='Search Monsters'
+          onChange={(event)=>{
+            console.log(event.target.value);
+            const searchString = event.target.value.toLocaleLowerCase();
+            const filteredMonsters = this.state.monsters.filter((monster)=>{
+              return monster.name.toLocaleLowerCase().includes(searchString);
+            });
+            this.setState(()=>{
+              return {monsters: filteredMonsters};
+            })
+          }}
+          />
         {this.state.monsters.map((monster)=>{
           return (
             <div key={monster.id}> 
